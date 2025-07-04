@@ -25,7 +25,7 @@ def show_creator():
 
         st.markdown("---")
         st.subheader("📬 Kontak & Profil")
-        st.markdown("- 📧 kharisma.qaulam@gmail.com")
+        st.markdown("- 📧 qaulamk@gmail.com")
         st.markdown("- 💼 [LinkedIn](https://www.linkedin.com/in/kharismaqaulam/)")
         st.markdown("- 🐱 [GitHub](https://github.com/kharismqf)")
         st.markdown("- 📝 [Medium](https://medium.com/@qaulamk)")
