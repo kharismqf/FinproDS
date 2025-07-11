@@ -21,15 +21,18 @@ with st.sidebar:
     page = option_menu(
         menu_title='Main Menu',
         options=['Understand the Data',
+                 'Explore The Data',         
                  'Try the Model',
                  'Meet the Creator'],
         icons=[
             'bar-chart',        # EDA / data understanding
+            'graph-up',         # baru untuk visualisasi interaktif
             'cpu',              # model / prediction
             'person-circle'     # about me
         ],
         default_index=0
     )
+
 
 
 if page == 'Understand the Data':
@@ -213,13 +216,16 @@ if page == 'Understand the Data':
                     )
                 st.markdown("---")
 
+# Halaman 2: Explore The Data
+elif page == "Explore The Data":
+    from model.eda import show_eda
+    show_eda()
 
-# Halaman 2: Try the Model
+# Halaman 3: Try the Model
 elif page == "Try the Model":
     from model.trythemodel import trythemodel        # impor FUNGSI‑nya
     trythemodel()                                    # jalankan
 
-# Halaman 3: Meet the Creator
+# Halaman 4: Meet the Creator
 elif page == 'Meet the Creator':
     show_creator()
-
