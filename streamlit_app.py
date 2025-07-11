@@ -19,7 +19,7 @@ from model.aboutme import show_creator
 # Navigasi dengan sidebar
 with st.sidebar:
     page = option_menu(
-        menu_title='Menu Utama',
+        menu_title='Main Menu',
         options=['Understand the Data',
                  'Try the Model',
                  'Meet the Creator'],
