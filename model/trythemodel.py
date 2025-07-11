@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 from pathlib import Path
 
-@st.cache_resource
+@st.cache_resource(ttl=0)
 def load_pipe():
     return joblib.load(Path("models/income_xgb_tuned.pkl"))
 
