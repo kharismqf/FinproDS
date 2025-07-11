@@ -24,7 +24,7 @@ def trythemodel():
     with st.form("user_inputs"):
         st.markdown("### 📥 Enter Personal & Work Information")
 
-        col1, col2 = st.columns(2)
+        col1, spacer, col2 = st.columns([5, 0.3, 5])
 
         with col1:
             age = st.slider("🎂 Age", 17, 90, 30)
@@ -95,7 +95,23 @@ def trythemodel():
         else:
             st.info("📦 **Prediction: ≤ 50K**")
 
-        # Show input summary
-        st.markdown("### 🔎 Input Summary")
-        st.dataframe(X_new)
-        st.caption(f"🎯 Prediction Label: {pred}")
+        st.markdown("### 🧾 Input Summary")
+
+        # Show in 2-column layout
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown(f"**🎂 Age:** {age}")
+            st.markdown(f"**🎓 Education:** {education} ({education_num})")
+            st.markdown(f"**💍 Marital Status:** {marital_status}")
+            st.markdown(f"**💼 Occupation:** {occupation_grouped}")
+            st.markdown(f"**🏢 Workclass:** {workclass}")
+            st.markdown(f"**👪 Relationship:** {relationship}")
+
+        with col2:
+            st.markdown(f"**📈 Capital Gain:** {capital_gain}")
+            st.markdown(f"**📉 Capital Loss:** {capital_loss}")
+            st.markdown(f"**⏰ Hours/Week:** {hours_per_week}")
+            st.markdown(f"**🌎 Race:** {race}")
+            st.markdown(f"**⚧️ Sex:** {sex}")
+            st.markdown(f"**🗺️ Native Region:** {native_region}")
