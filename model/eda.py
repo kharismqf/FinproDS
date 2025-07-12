@@ -77,6 +77,7 @@ def show_eda():
         color_discrete_sequence=["#95DCE2", "#82ADB3"]
     )
     st.plotly_chart(fig_under)
+    
 
     st.markdown("###### 2. Is education level related to probability of earning >$50K?")
     edu_income = df.groupby('education-num')['income'].value_counts(normalize=True).unstack().fillna(0)
@@ -89,9 +90,10 @@ def show_eda():
     )
     fig3.update_layout(xaxis_title="Education Num", yaxis_title="Proportion >50K")
     st.plotly_chart(fig3)
+    st.write("🔍 **Insight:** A clear upward trend is observed—higher education level (`education-num`) significantly increases the probability of earning more than $50K.")
+
 
     st.markdown("###### 3. At what age do people tend to reach their income peak?")
-    
     # Create age bins
     df['age_group'] = pd.cut(df['age'], bins=[16, 25, 35, 45, 55, 65, 90], 
                              labels=["17–25", "26–35", "36–45", "46–55", "56–65", "66+"])
@@ -101,21 +103,22 @@ def show_eda():
     
     # Plot
     fig4 = px.bar(
-        age_group_income,
-        x=age_group_income.index,
+        age_group_income_percent,
+        x=age_group_income_percent.index,
         y='>50K',
         title="📊 Proportion of >$50K Income by Age Group",
-        labels={'x': 'Age Group', '>50K': 'Proportion >50K'},
+        labels={'x': 'Age Group', '>50K': 'Percentage >50K'},
         color_discrete_sequence=["#82ADB3"]
     )
     
     fig4.update_layout(
         xaxis_title="Age Group",
-        yaxis_title="Proportion of Individuals with >$50K Income",
+        yaxis_title="Percentage of Individuals with >$50K Income",
         bargap=0.3
     )
-    
+
     st.plotly_chart(fig4)
+    st.write("🔍 **Insight:** Individuals tend to reach their income peak between ages **46–55**, followed by **36–45** and **56–65**, indicating mid-to-late career is often the most financially rewarding phase.")
 
 
     st.markdown("###### 4. Heatmap: Numerical Correlation")
@@ -124,6 +127,8 @@ def show_eda():
     fig_corr, ax = plt.subplots(figsize=(8, 5))
     sns.heatmap(corr, annot=True, cmap="YlGnBu", fmt=".2f", linewidths=.5, ax=ax)
     st.pyplot(fig_corr)
+    st.write("🔍 **Insight:** There’s a positive but modest correlation between `education-num`, `hours-per-week`, and high income. However, none of the numerical features show strong linear relationships.")
+
 
     st.markdown("###### 5. Which regions have the most high-income earners?")
     st.markdown("""     <div style="
@@ -149,6 +154,8 @@ def show_eda():
     )
     fig5.update_layout(yaxis_title="Proportion >50K", xaxis_title="Region")
     st.plotly_chart(fig5)
+    st.write("🔍 **Insight:** Canada and 'Other' regions (which includes **Iran, Guam, USVI, Samoa America, Netherlands, and Hong Kong**) have the highest proportion of high-income individuals, followed closely by Asia and Europe.")
+
 
     st.markdown("###### 6. Who earns more based on relationship status?")
     rel_income = df.groupby('relationship')['income'].value_counts(normalize=True).unstack().fillna(0).sort_values('>50K', ascending=False)
@@ -162,3 +169,5 @@ def show_eda():
     )
     fig6.update_layout(yaxis_title="Proportion >50K", xaxis_title="Relationship")
     st.plotly_chart(fig6)
+    st.write("🔍 **Insight:** Individuals labeled as 'Wife' and 'Husband' have the highest proportion of income >$50K, suggesting that married individuals tend to earn more.")
+
