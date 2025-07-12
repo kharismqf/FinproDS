@@ -94,29 +94,28 @@ def show_eda():
 
 
     st.markdown("###### 3. At what age do people tend to reach their income peak?")
-    # Create age bins
-    df['age_group'] = pd.cut(df['age'], bins=[16, 25, 35, 45, 55, 65, 90], 
-                             labels=["17–25", "26–35", "36–45", "46–55", "56–65", "66+"])
-    
-    # Group by age_group and income
-    age_group_income = df.groupby('age_group')['income'].value_counts(normalize=True).unstack().fillna(0)
-    
-    # Plot
-    fig4 = px.bar(
-        age_group_income_percent,
-        x=age_group_income_percent.index,
-        y='>50K',
-        title="📊 Proportion of >$50K Income by Age Group",
-        labels={'x': 'Age Group', '>50K': 'Percentage >50K'},
-        color_discrete_sequence=["#82ADB3"]
-    )
-    
-    fig4.update_layout(
-        xaxis_title="Age Group",
-        yaxis_title="Percentage of Individuals with >$50K Income",
-        bargap=0.3
+    # Create age groups
+    df['age_group'] = pd.cut(
+        df['age'],
+        bins=[16, 25, 35, 45, 55, 65, 90],
+        labels=["17–25", "26–35", "36–45", "46–55", "56–65", "66+"]
     )
 
+    # Calculate proportion of >50K income in each group
+    age_group_income_percent = df.groupby('age_group')['income'].value_counts(normalize=True).unstack().fillna(0)
+
+    # Plot
+    fig4 = px.bar(
+    age_group_income_percent,
+    x=age_group_income_percent.index,
+    y='>50K',
+    title="📊 Proportion of >$50K Income by Age Group",
+    color_discrete_sequence=["#82ADB3"]
+    )
+    fig4.update_layout(
+        xaxis_title = "Age Group",
+        yaxis_title="Proportion of Individuals with >$50K Income"
+    )
     st.plotly_chart(fig4)
     st.write("🔍 **Insight:** Individuals tend to reach their income peak between ages **46–55**, followed by **36–45** and **56–65**, indicating mid-to-late career is often the most financially rewarding phase.")
 
