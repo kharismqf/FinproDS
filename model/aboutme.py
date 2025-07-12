@@ -34,11 +34,21 @@ def show_creator():
         )
 
         st.markdown("---")
-        st.subheader("📬 Kontak & Profil")
-        st.markdown("- 📧 qaulamk@gmail.com")
-        st.markdown("- 💼 [LinkedIn](https://www.linkedin.com/in/kharismaqaulam/)")
-        st.markdown("- 🐱 [GitHub](https://github.com/kharismqf)")
-        st.markdown("- 📝 [Medium](https://medium.com/@qaulamk)")
+        st.markdown("<h3 style='color:#0b2c4c;'>📬 Contact & Profile</h3>", unsafe_allow_html=True)
+        
+        st.markdown(
+            """
+            <div style="background-color: #FDF3E6; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
+                <ul style="list-style-type: none; padding-left: 0; font-size: 16px;">
+                    <li>📧 <b>Email:</b> <a href="mailto:qaulamk@gmail.com">qaulamk@gmail.com</a></li>
+                    <li>💼 <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/kharismaqaulam/" target="_blank">kharismaqaulam</a></li>
+                    <li>🐱 <b>GitHub:</b> <a href="https://github.com/kharismqf" target="_blank">kharismqf</a></li>
+                    <li>📝 <b>Medium:</b> <a href="https://medium.com/@qaulamk" target="_blank">@qaulamk</a></li>
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
     with col2:
         st.image("images/image6.jpeg", width=240, caption="Kharisma Qaulam")
