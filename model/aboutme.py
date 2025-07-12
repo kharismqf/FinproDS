@@ -25,7 +25,7 @@ def show_creator():
             I have hands-on experience in <b>Customer Segmentation, A/B Testing, and People Analytics</b>
             using tools like <b>Python, SQL, and Power BI</b>.
             <br><br>
-            I'm currently enrolled in an intensive data bootcamp and will be starting a data internship in <b>July</b>.
+            I'm currently enrolled in an intensive data bootcamp and will graduate on <b>July</b>.
             My mission is to <b>create social impact through data</b> and build a strong
             <b>personal brand</b> around career switching and book insights.
             </div>
