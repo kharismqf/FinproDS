@@ -90,17 +90,33 @@ def show_eda():
     fig3.update_layout(xaxis_title="Education Num", yaxis_title="Proportion >50K")
     st.plotly_chart(fig3)
 
-    st.markdown("###### 3. Do people of a certain age tend to earn ≥$50K?")
-    age_income = df.groupby('age')['income'].value_counts(normalize=True).unstack().fillna(0)
-    fig4 = px.line(
-        age_income,
+    st.markdown("###### 3. At what age do people tend to reach their income peak?")
+    
+    # Create age bins
+    df['age_group'] = pd.cut(df['age'], bins=[16, 25, 35, 45, 55, 65, 90], 
+                             labels=["17–25", "26–35", "36–45", "46–55", "56–65", "66+"])
+    
+    # Group by age_group and income
+    age_group_income = df.groupby('age_group')['income'].value_counts(normalize=True).unstack().fillna(0)
+    
+    # Plot
+    fig4 = px.bar(
+        age_group_income,
+        x=age_group_income.index,
         y='>50K',
-        title="Income >50K Ratio by Age",
-        markers=True,
+        title="📊 Proportion of >$50K Income by Age Group",
+        labels={'x': 'Age Group', '>50K': 'Proportion >50K'},
         color_discrete_sequence=["#82ADB3"]
     )
-    fig4.update_layout(xaxis_title="Age", yaxis_title="Proportion >50K")
+    
+    fig4.update_layout(
+        xaxis_title="Age Group",
+        yaxis_title="Proportion of Individuals with >$50K Income",
+        bargap=0.3
+    )
+    
     st.plotly_chart(fig4)
+
 
     st.markdown("###### 4. Heatmap: Numerical Correlation")
     numerical_cols = ['age', 'education-num', 'capital-gain', 'capital-loss', 'hours-per-week']
