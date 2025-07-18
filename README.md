@@ -27,6 +27,7 @@ The app is built using **Streamlit** and includes:
 
 ## 📁 Project Structure
 
+```
 Finpro/
 │
 ├── dataset/ # Contains train & test data
@@ -38,4 +39,5 @@ Finpro/
 ├── streamlit_app.py # Main Streamlit app
 ├── README.md # Project readme file
 └── requirements.txt # Python dependencies
+```
 
